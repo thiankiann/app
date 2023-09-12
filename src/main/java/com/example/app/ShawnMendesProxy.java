@@ -9,7 +9,7 @@ public interface ShawnMendesProxy {
 
 
     @RequestMapping("/search")
-    public String makeSearchRequest(
+    public ShawnMendesResponse makeSearchRequest(
             @RequestParam("term") String term,
             @RequestParam("limit") Integer limit
     );
