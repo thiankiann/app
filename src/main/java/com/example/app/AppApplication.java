@@ -1,6 +1,7 @@
 package com.example.app;
 
 import feign.FeignException;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,14 +15,18 @@ import java.util.List;
 @EnableFeignClients
 public class AppApplication {
 
+    private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(AppApplication.class);
     @Autowired
     ShawnMendesProxy shawnMendesClient;
+
+    //Logger log = getLogger(AppApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(AppApplication.class, args);
     }
+
     @EventListener(ApplicationStartedEvent.class)
-    public void makeRequestToShawnMendesEndpoint(){
+    public void makeRequestToShawnMendesEndpoint() {
 
         try {
             ShawnMendesResponse response = shawnMendesClient.makeSearchRequest("shawnmendes", 5);
@@ -31,11 +36,12 @@ public class AppApplication {
                     shawnMendesResult -> System.out.println(shawnMendesResult.trackName())
             );
 
-        } catch(FeignException.FeignClientException feignClientException){
+        } catch (FeignException.FeignClientException feignClientException) {
             System.out.println("client exception: " + feignClientException.status());
-        }catch(FeignException.FeignServerException feignServerException){
+            log.error("client exception: " + feignClientException.status());
+        } catch (FeignException.FeignServerException feignServerException) {
             System.out.println("server exception: " + feignServerException.status());
-        }catch(FeignException feignException){
+        } catch (FeignException feignException) {
             System.out.println(feignException.getMessage());
             System.out.println(feignException.status());
         }
