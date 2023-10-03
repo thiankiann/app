@@ -45,9 +45,9 @@ public class AppApplication {
             log.info(sampleShawMendesServerClient.addSongs(new SampleShawnMendesRequest("In My Blood")));
             log.info(sampleShawMendesServerClient.addSongs(new SampleShawnMendesRequest("Stitches")));
 //            log.info(sampleShawMendesServerClient.fetchAllSongs("id2"));
-          //  sampleShawMendesServerClient.deleteByIdUsingfPathVariable("0");
-            sampleShawMendesServerClient.deleteByIdUsingfQueryParam("0");
-            log.info(sampleShawMendesServerClient.fetchAllSongs("id2"));
+            sampleShawMendesServerClient.deleteByIdUsingfPathVariable("0");
+            //  sampleShawMendesServerClient.deleteByIdUsingfQueryParam("0");
+           log.info(sampleShawMendesServerClient.fetchAllSongs("id2"));
         } catch (FeignException.FeignClientException feignClientException) {
             System.out.println("client exception: " + feignClientException.status());
             log.error("client exception: " + feignClientException.status());

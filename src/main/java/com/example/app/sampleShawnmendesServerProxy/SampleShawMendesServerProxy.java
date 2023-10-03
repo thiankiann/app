@@ -17,6 +17,6 @@ public interface SampleShawMendesServerProxy {
     @DeleteMapping("/shawn/songs/{songId}")
     public void deleteByIdUsingfPathVariable( @PathVariable String songId);
 
-    @DeleteMapping("/shawn/songs")
-    public void deleteByIdUsingfQueryParam( @RequestParam(name = "id" ) String songId);
+//    @DeleteMapping("/shawn/songs")
+//    public void deleteByIdUsingfQueryParam( @RequestParam(name = "id" ) String songId);
 }
