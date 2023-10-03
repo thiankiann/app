@@ -13,4 +13,10 @@ public interface SampleShawMendesServerProxy {
 
     @PostMapping("/shawn/songs")
     public SampleServerShawnMendesResponse addSongs(@RequestBody SampleShawnMendesRequest request);
+
+    @DeleteMapping("/shawn/songs/{songId}")
+    public void deleteByIdUsingfPathVariable( @PathVariable String songId);
+
+    @DeleteMapping("/shawn/songs")
+    public void deleteByIdUsingfQueryParam( @RequestParam(name = "id" ) String songId);
 }
