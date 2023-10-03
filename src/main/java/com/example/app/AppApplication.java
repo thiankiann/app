@@ -5,6 +5,7 @@ import com.example.app.itunes.ItunesResponse;
 import com.example.app.itunes.ItunesResult;
 import com.example.app.sampleShawnmendesServerProxy.SampleServerShawnMendesResponse;
 import com.example.app.sampleShawnmendesServerProxy.SampleShawMendesServerProxy;
+import com.example.app.sampleShawnmendesServerProxy.SampleShawnMendesRequest;
 import feign.FeignException;
 
 
@@ -34,15 +35,16 @@ public class AppApplication {
     public static void main(String[] args) {
         SpringApplication.run(AppApplication.class, args);
     }
-
+    // ItunesResponse response = itunesClient.makeSearchRequest("shawnmendes", 5);
+    // SampleServerShawnMendesResponse response = sampleShawMendesServerClient.fetchAllSongs("id1");
+    // log.info(response);
     @EventListener(ApplicationStartedEvent.class)
     public void run() {
-
         try {
-           // ItunesResponse response = itunesClient.makeSearchRequest("shawnmendes", 5);
-            SampleServerShawnMendesResponse response = sampleShawMendesServerClient.fetchAllSongs("id1");
-            log.info(response);
-
+            log.info(sampleShawMendesServerClient.fetchAllSongs("id1"));
+            log.info(sampleShawMendesServerClient.addSongs(new SampleShawnMendesRequest("In My Blood")));
+            log.info(sampleShawMendesServerClient.addSongs(new SampleShawnMendesRequest("Stitches")));
+            log.info(sampleShawMendesServerClient.fetchAllSongs("id2"));
         } catch (FeignException.FeignClientException feignClientException) {
             System.out.println("client exception: " + feignClientException.status());
             log.error("client exception: " + feignClientException.status());
